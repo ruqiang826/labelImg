@@ -558,6 +558,7 @@ class MainWindow(QMainWindow, WindowMixin):
     def loadLabels(self, shapes):
         s = []
         for label, points, line_color, fill_color in shapes:
+            print line_color, fill_color
             shape = Shape(label=label)
             for x, y in points:
                 shape.addPoint(QPointF(x, y))
@@ -696,6 +697,7 @@ class MainWindow(QMainWindow, WindowMixin):
 
         if QFile.exists(filename):
             if LabelFile.isLabelFile(filename):
+                print filename
                 try:
                     self.labelFile = LabelFile(filename)
                 except LabelFileError, e:

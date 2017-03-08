@@ -7,6 +7,7 @@ from PyQt4.QtCore import *
 from lib import distance
 
 DEFAULT_LINE_COLOR = QColor(0, 255, 0, 128)
+RED_COLOR = QColor(255, 0, 0, 128)
 DEFAULT_FILL_COLOR = QColor(255, 0, 0, 128)
 DEFAULT_SELECT_LINE_COLOR = QColor(255, 255, 255)
 DEFAULT_SELECT_FILL_COLOR = QColor(0, 128, 255, 155)

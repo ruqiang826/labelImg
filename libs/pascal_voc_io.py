@@ -5,6 +5,7 @@ import sys
 from xml.etree import ElementTree
 from xml.etree.ElementTree import Element, SubElement
 from lxml import etree
+from shape import RED_COLOR
 
 
 class PascalVocWriter:
@@ -117,13 +118,13 @@ class PascalVocReader:
     def getShapes(self):
         return self.shapes
 
-    def addShape(self, label, rect):
+    def addShape(self, label, rect, line_color = None, fill_color = None):
         xmin = rect[0]
         ymin = rect[1]
         xmax = rect[2]
         ymax = rect[3]
         points = [(xmin, ymin), (xmax, ymin), (xmax, ymax), (xmin, ymax)]
-        self.shapes.append((label, points, None, None))
+        self.shapes.append((label, points, line_color, fill_color))
 
     def parseXML(self):
         assert self.filepath.endswith('.xml'), "Unsupport file format"
@@ -136,9 +137,12 @@ class PascalVocReader:
             bndbox = object_iter.find("bndbox")
             rects.append([int(it.text) for it in bndbox])
             label = object_iter.find('name').text
-
+            pose = object_iter.find('pose').text
             for rect in rects:
-                self.addShape(label, rect)
+                if pose == 'Auto':
+                    self.addShape(label, rect, (255, 0, 0, 128))
+                else:
+                    self.addShape(label, rect)
         return True
 
 

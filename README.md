@@ -89,3 +89,7 @@ Send a pull request
 ### License
 [License](LICENSE.md)
 
+
+需要指定一个默认的标注文件夹，当加载一个图片的时候，如果默认标注文件夹内有同名的xml标注，那就直接把标注显示在这个图片上。继续编辑，增量保存修改内容.
+
+修改了一个逻辑，在libs/pascal_voc_io.py里，根据xml的object的pose字段，如果是Auto，说明是模型自动标注的object，那么把line color改成红色，在界面上以示区分.
