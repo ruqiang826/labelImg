@@ -49,7 +49,6 @@ class LabelFile(object):
     @staticmethod
     def isLabelFile(filename):
         fileSuffix = os.path.splitext(filename)[1].lower()
-        print fileSuffix, LabelFile.suffix
         return fileSuffix == LabelFile.suffix
 
     @staticmethod
